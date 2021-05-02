@@ -12,9 +12,8 @@ function addList() {
         contents.focus();
         return false;
     }
-
-    let tr = document.createElement('tr');
-    let input = document.createElement('input');
+    var tr = document.createElement('tr');
+    var input = document.createElement('input');
     input.setAttribute('type', 'checkbox');
     input.setAttribute('class', 'btn-chk');
 
@@ -26,6 +25,7 @@ function addList() {
     td02.innerHTML = contents.value;
     tr.appendChild(td02);
 
+
     document.getElementById('listBody').appendChild(tr);
     contents.value='';
     contents.focus();
@@ -33,23 +33,37 @@ function addList() {
 }
 
 function delAllEle() {
-    let list = document.getElementById('listBody');
-    let listChild = list.childNodes;
-    for(let t of listChild) {
-        if (t.nodeType == 1 ) {
-            list.removeChild(t);
-        }
-    }
-
+  var list = document.getElementById('listBody');
+  var listChild = list.children;
+  for(var i=0; i<listChild.length; i++){
+      list.removeChild(listChild[i])
+      i--;
+  }
 
 }
 
 function delLastEle() {
+    var body = document.getElementById('listBody');
+    var list = document.querySelectorAll('listBody > tr');
+        if(list.length > 0) {
+            var liLen = list.length -1;
+            body.removeChild(list);
+        }
+        else {
+            alert("삭제 할 항목이 없습니다.")
+            return false;
+        }
 
 }
 
 function delSelected() {
-
-
-}
+    var body = document.getElementById('listBody');
+    var chkbox = document.querySelectorAll('listBody .btn-chk');
+    for (var i in chkbox) {
+        if (chkbox[i].nodeType == 1 && chkbox[i].checked == true) {
+            body.removeChild[i].parentNode.parentNode;
+        }
+    
+        }
+    }
 
